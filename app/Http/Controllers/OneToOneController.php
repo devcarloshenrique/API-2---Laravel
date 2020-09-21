@@ -26,4 +26,24 @@ class OneToOneController extends Controller
         echo "<hr>Latitude: {$location->latitude}</hr> <br>";
         echo "Logitude: {$location->longitude}</hr>";
     }
+
+    public function oneToOneInverse()
+    {
+        $latitude = 60;
+        $longitude = 22;
+
+        $location = Location::where('latitude', $latitude)
+            ->where('longitude', $longitude)
+            ->get()
+            ->first();
+
+        $country = $location->country;
+        //$country = $location->country()->get()->first();
+
+        echo $country->name;
+
+        echo "<br><br>";
+
+        echo $location;
+    }
 }
