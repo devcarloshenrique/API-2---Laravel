@@ -21,6 +21,9 @@ class Country extends Model
     public function states()
     {
         // Relacionamento de um para muitos, não é necessário passar o name space de State pois esta na mesma pasta
-        return $this->hasMany(State::class);
+
+        //countries.id => PK
+        //states.country_id => FK
+        return $this->hasMany(State::class, 'country_id', 'id');
     }
 }

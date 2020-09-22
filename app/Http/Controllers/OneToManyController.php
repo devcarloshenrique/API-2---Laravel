@@ -11,12 +11,15 @@ class OneToManyController extends Controller
     public function oneToMany()
     {
         $keySearch = 'a';
-        $countries = Country::where('name', 'LIKE', "%{$keySearch}%")->get();
+        //Graças ao with('states') na mesma consulta é possível pegar todos os dados relacionados ao relacionamento definido na função states e retornar em uma única consulta
+        $countries = Country::where('name', 'LIKE', "%{$keySearch}%")->with('states')->get();
+
+
 
         foreach ($countries as $country) {
             echo "<b> {$country->name} </b> <br>";
 
-            $states = $country->states()->get();
+            $states = $country->states;
 
             foreach ($states as $state) {
                 echo "<br>{$state->initials} - {$state->name}";
