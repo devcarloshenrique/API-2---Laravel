@@ -26,4 +26,11 @@ class Country extends Model
         //states.country_id => FK
         return $this->hasMany(State::class, 'country_id', 'id');
     }
+
+    public function cities()
+    {
+        // Tenho que passar como primeiro parametro o que eu quero retornar, no caso cidade
+        // Como segundo parametro eu tenho que retornar a model que faz a intermediação entre country e city, que no caso é State
+        return $this->hasManyThrough(City::class, State::class);
+    }
 }
