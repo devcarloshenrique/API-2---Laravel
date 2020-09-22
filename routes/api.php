@@ -9,4 +9,4 @@ Route::get('one-to-one-inverse', 'OneToOneController@oneToOneInverse');
 
 Route::get('one-to-one-insert', 'OneToOneController@oneToOneInsert');
 
-Route::get('one-to-many', 'OneToManyController@oneToOneMany');
+Route::get('one-to-many', 'OneToManyController@oneToMany');
