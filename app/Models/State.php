@@ -12,4 +12,11 @@ class State extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function cities()
+    {
+
+        // Como um state tem varias cities, hasOne => um para muitos
+        return $this->hasMany(City::class);
+    }
 }

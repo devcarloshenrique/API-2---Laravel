@@ -61,4 +61,26 @@ class OneToManyController extends Controller
 
         echo "<hr> {$country->name} ";
     }
+
+    public function oneToManyTwo()
+    {
+        $keySearch = 'a';
+        $countries = Country::where('name', 'LIKE', "%{$keySearch}%")->with('states')->get();
+
+        foreach ($countries as $country) {
+            echo "<b> {$country->name} </b> <br>";
+
+            $states = $country->states;
+
+            foreach ($states as $state) {
+                echo "<br>{$state->initials} - {$state->name}: ";
+
+                foreach ($state->cities as $city) {
+                    echo "{$city->name} , ";
+                }
+            }
+
+            echo "<br><br>";
+        }
+    }
 }
