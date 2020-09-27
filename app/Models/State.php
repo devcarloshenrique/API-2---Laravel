@@ -20,4 +20,13 @@ class State extends Model
         // Como um state tem varias cities, hasOne => um para muitos
         return $this->hasMany(City::class);
     }
+
+    public function comments()
+    {
+        /**
+         * 1º Parametro, Model que tem os comentários em si. Comment::class
+         * 2º Parametro, Metodo de Comment::class que está fazendo o relacionamento polimorfico
+         */
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

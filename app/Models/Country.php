@@ -33,4 +33,13 @@ class Country extends Model
         // Como segundo parametro eu tenho que retornar a model que faz a intermediação entre country e city, que no caso é State
         return $this->hasManyThrough(City::class, State::class);
     }
+
+    public function comments()
+    {
+        /**
+         * 1º Parametro, Model que tem os comentários em si. Comment::class
+         * 2º Parametro, Metodo de Comment::class que está fazendo o relacionamento polimorfico
+         */
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
