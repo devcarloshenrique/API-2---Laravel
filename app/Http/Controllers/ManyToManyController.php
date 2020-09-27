@@ -26,6 +26,33 @@ class ManyToManyController extends Controller
         $company = Company::where('name', 'Abaeté Linhas Aéreas')->get()->first();
 
         echo "<br> {$company->name} </b> <br>";
+        $cities = $company->cities;
+
+        foreach ($cities as $city) {
+            echo "{$city->name}, ";
+        }
+    }
+
+    public function manyToManyInsert()
+    {
+        $dataForm = [1, 2, 3];
+
+        $company = Company::find(1);
+
+        echo "<br> {$company->name} </b> <br>";
+
+        // Vinculos de ManyToMany
+
+        // Attach incrementa os items
+        // $company->cities()->attach($dataForm);
+
+        // Sync sincroniza os items
+        $company->cities()->sync($dataForm);
+
+
+        // Removendo um registro da tabela company_city onde a company id = 1 e city_id = 2
+        // Também pode ser passado um array de valores como parametro
+        // $company->cities()->detach([2]);
 
         $cities = $company->cities;
 
