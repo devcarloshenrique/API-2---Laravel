@@ -13,4 +13,14 @@ class City extends Model
         // Relacionamento de muitos para muitos
         return $this->belongsToMany(Company::class, 'company_city');
     }
+
+    // Logica que vai retornar os comentarios utilizando o relacionamento pholymorphic
+    public function comments()
+    {
+        /**
+         * 1º Parametro, Model que tem os comentários em si. Comment::class
+         * 2º Parametro, Metodo de Comment::class que está fazendo o relacionamento polimorfico
+         */
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
